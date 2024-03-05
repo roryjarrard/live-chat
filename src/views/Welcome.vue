@@ -78,5 +78,10 @@ export default {
 
 .welcome button {
   margin: 20px auto;
+  cursor: pointer;
+}
+
+.welcome button:hover {
+  box-shadow: 3px 3px 10px 0 #ccc;
 }
 </style>
