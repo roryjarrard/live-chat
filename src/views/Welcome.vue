@@ -3,14 +3,14 @@
     <p>Welcome</p>
     <div v-if="showLogin">
       <h2>Login</h2>
-      <LoginForm />
+      <LoginForm @login="enterChat" />
       <p>
         Don't have an account? <span @click="showLogin = false">Sign up</span>
       </p>
     </div>
     <div v-else>
       <h2>Sign Up</h2>
-      <SignupForm />
+      <SignupForm @signup="enterChat" />
       <p>Already registered? <span @click="showLogin = true">Login</span></p>
     </div>
   </div>
@@ -18,6 +18,7 @@
 
 <script>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import SignupForm from "@/components/SignupForm.vue";
 import LoginForm from "@/components/LoginForm.vue";
 
@@ -28,10 +29,16 @@ export default {
   },
 
   setup() {
+    const router = useRouter();
     const showLogin = ref(true);
+
+    const enterChat = () => {
+      router.push({ name: "Chatroom" });
+    };
 
     return {
       showLogin,
+      enterChat,
     };
   },
 };
